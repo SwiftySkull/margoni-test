@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block homeActive %}active{% endblock %}
+
+{% block body %}
+
+<h1>Hello ! ✅</h1>
+<h2>Liste de toutes ({{ count }}) les peintures</h2>
+
+{{ include('sample/_painting_skeleton.html.twig', {'paintings': paintings}) }}
+
+{{ include('main/nav_pages.html.twig', {'previousPage' : previousPage, 'nextPage': nextPage, 'pages' : pages, 'totalPages': totalPages}) }}
+
+{% endblock %}

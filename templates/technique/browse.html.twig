@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recherche par technique{% endblock %}
+
+{% block techniqueActive %}active{% endblock %}
+
+{% block body %}
+
+<h1>Recherche par technique</h1>
+
+<h2>Liste des techniques</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Actions</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for technique in techniques %}
+
+      {{ include('sample/_table.html.twig', {
+        'variable': technique,
+        'var' : 'technique',
+        'unique' : technique.type,
+        })
+      }}
+
+    {% endfor %}
+  </tbody>
+</table>
+
+<form action="{{ path('technique_add') }}" method="POST">
+  <input type="hidden" name="token" value="{{ csrf_token('add-edit-item') }}"/>
+  <button class="btn btn-success">Ajouter une nouvelle technique</button>
+</form>
+{% endblock %}

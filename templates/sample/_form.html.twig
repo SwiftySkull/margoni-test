@@ -1,0 +1,8 @@
+{{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
+    {# Génère tous les champs du form #}
+    {{ form_widget(form) }}
+
+    <input type="hidden" name="token" value="{{ csrf_token('add-edit-item') }}"/>
+    <button type="submit" class="btn btn-success">Enregistrer</button>
+
+{{ form_end(form) }}

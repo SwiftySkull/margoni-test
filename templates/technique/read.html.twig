@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recherche par technique{% endblock %}
+
+{% block techniqueActive %}active{% endblock %}
+
+{% block body %}
+
+<h1>Recherche par technique</h1>
+
+{% if 0 is not same as count %}
+<h2>Liste des {{ count }} tableaux de la technique {{ technique.type }}</h2>
+{% else %}
+<h2>Aucun tableau trouvé</h2>
+{% endif %}
+
+{{ include('sample/_painting_skeleton.html.twig', {'paintings': paintings}) }}
+
+<hr>
+
+{{ include('sample/_nav_pages.html.twig', {'previousPage': previousPage, 'nextPage': nextPage, 'pages': pages, 'totalPages': totalPages, 'variable': technique, 'var': 'technique'}) }}
+
+{% endblock %}

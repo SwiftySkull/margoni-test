@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ painting.title }}{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+
+    {{ include('_flash_messages.html.twig') }}
+
+    <h1>{{ painting.title ?? '- Titre générique -' }}</h1>
+    <h4>Nom générique : {{ painting.dbName }}</h4>
+    <div style="display: flex; justify-content: space-between;">
+        <h5>Affichage sur site : {{ painting.webDisplay ? 'Oui ✅' : 'Non ❌'}}</h5>
+        <form action="/paint/display-on-website/{{ painting.id }}" method="POST">
+            <button>Cliquer pour {{ painting.webDisplay ? 'enlever de l\'affichage du site ❌' : 'afficher sur le site ✅'}}</button>
+        </form>
+    </div>
+    <img src="data:image/jpeg;base64,{{ painting.picture.file }}" style="max-width: 80%; max-height: 70vh"/>
+    <br>
+    <p><b>Date de création</b> : {{ painting.date is not same as null ? painting.date : 'Non précisée.' }}</p>
+    <p><b>Catégories de l'oeuvre</b> :</p>
+    <ul>
+        {% for category in painting.categories %}
+            <li>{{ category.name }}</li>
+        {% endfor %}
+    </ul>
+
+    <p><b>Techniques utilisées</b> :</p>
+    <ul>
+        {% for tech in painting.technique %}
+            <li>{{ tech.type }}</li>
+        {% endfor %}
+    </ul>
+    
+    {% if painting.height is not same as null and painting.width is not same as null %}
+        <p><b>Taille</b> : {{ painting.height }} x {{ painting.width }} cm (hauteur x largeur)</p>
+    {% else %}
+        <p><b>Taille</b> : Non précisée.</p>
+    {% endif %}
+    
+    <p><b>Format</b> : {{ painting.size.format ?? 'Non précisé.' }}</p>
+    <p><b>Encadrement</b> : {{ painting.frame.framing ?? 'Non précisé.' }}</p>
+    <p><b>Collection</b> : {{ painting.situation.collection ?? 'Non précisée.' }}</p>
+    <p><b>Localisation</b> : {{ painting.location ?? 'Non précisée.' }}</p>
+    <p><b>Information</b> : {{ painting.information ?? 'Pas d\'information complémentaire actuellement.' }}</p>
+    <form action="{{ path('paint_edit', {id:painting.id}) }}" method="POST">
+        <input type="hidden" name="token" value="{{ csrf_token('add-edit-item') }}"/>
+        <button class="btn btn-sm btn-warning">Modifier</button>
+    </form>
+    <form action="{{ path('paint_delete', {id:painting.id}) }}" onsubmit="return confirm('Supprimer {{ painting.title }} ?')" method="POST">
+        <input type="hidden" name="token" value="{{ csrf_token('delete-item') }}"/>
+        <input type="hidden" name="_method" value="DELETE"/>
+        <button class="btn btn-danger">Supprimer</button>
+    </form>
+</div>
+{% endblock %}

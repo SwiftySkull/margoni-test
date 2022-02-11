@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ method }} d'un encadrement{% endblock %}
+
+{% block frameActive %}active{% endblock %}
+
+{% block body %}
+
+<h1>{{ method }} d'un encadrement</h1>
+
+{{ include('sample/_form.html.twig') }}
+
+{% endblock %}

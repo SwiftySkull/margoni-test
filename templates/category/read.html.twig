@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recherche par catégorie{% endblock %}
+
+{% block categoryActive %}active{% endblock %}
+
+{% block body %}
+
+<h1>Recherche par catégorie</h1>
+
+{% if 0 is not same as count %}
+<h2>Liste des {{ count }} tableaux de la catégorie {{ category.name }}</h2>
+{% else %}
+<h2>Aucun tableau trouvé</h2>
+{% endif %}
+
+{{ include('sample/_painting_skeleton.html.twig', {'paintings': paintings}) }}
+
+{{ include('sample/_nav_pages.html.twig', {'previousPage': previousPage, 'nextPage': nextPage, 'pages': pages, 'totalPages': totalPages, 'variable': category, 'var': 'category'}) }}
+
+{% endblock %}

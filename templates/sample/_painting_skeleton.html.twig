@@ -1,0 +1,20 @@
+{% for paint in paintings %}
+    <div>
+        <p><b><a href="{{ path('read_paint', {id:paint.id}) }}">{{ paint.title ?? paint.dbName }}</a></b> peint en {{ paint.date is not same as null ? paint.date : 'Non précisée.' }} ({{ paint.size.format ?? 'Non précisé.' }})
+        {% if paint.height is not same as null and paint.width is not same as null %}
+            {{ paint.height }} x {{ paint.width }} cm
+        {% else %}
+            Non précisée
+        {% endif %}
+        </p>
+        {% for category in paint.categories %}
+            <span class="badge bg-primary">{{ category.name }}</span>
+        {% endfor %}
+        <p>Encadrement : {{ paint.frame.framing ?? 'Non précisé.' }}</p>
+        <p>Collection : {{ paint.situation.collection ?? 'Non précisée.' }}</p>
+        <p>Localisation : {{ paint.location ?? 'Non précisée.' }}</p>
+    </div>
+    <img src="data:image/jpeg;base64,{{ paint.picture.file }}" style="height: 150px; width: 150px"/>
+    <p>Information : {{ paint.information ? paint.information|u.truncate(200, '[...]', false) : 'Pas d\'information complémentaire pour le moment.'}}</p>
+    <hr>
+{% endfor %}

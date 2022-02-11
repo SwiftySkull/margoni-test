@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block homeActive %}active{% endblock %}
+
+{% block body %}
+
+<h1>Recherche actuelle : {{ search }}</h1>
+
+{% if 0 is not same as count %}
+<h2>Liste pour un total de {{ count }} peintures</h2>
+{% else %}
+<h2>Aucun tableau trouvé</h2>
+{% endif %}
+
+{{ include('sample/_painting_skeleton.html.twig', {'paintings': paintings}) }}
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item"><a class="page-link" href="{{ path('search_plus', {page:previousPage, search:search}) }}">- 5 Previous</a></li>
+    
+    {% if pages['pageMin'] < 2 %}
+    {% else %}
+    <li class="page-item"><p class="page-link" href="">...</p></li>
+    {% endif %}
+    
+    {% for i in pages['pageMin']..pages['pageMax'] %}
+        <li class="page-item"><a class="page-link" href="{{ path('search_plus', {page:i, search:search}) }}">{{ i }}</a></li>
+    {% endfor %}
+        
+    {% if pages['pageMax'] > totalPages - 1 %}
+    {% else %}
+    <li class="page-item"><p class="page-link" href="">...</p></li>
+    {% endif %}
+
+    <li class="page-item"><a class="page-link" href="{{ path('search_plus', {page:nextPage, search:search}) }}">+ 5 Next</a></li>
+  </ul>
+</nav>
+
+{% endblock %}

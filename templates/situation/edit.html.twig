@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ method }} d'une situation de collection{% endblock %}
+
+{% block situationActive %}active{% endblock %}
+
+{% block body %}
+
+<h1>{{ method }} d'une situation de collection</h1>
+
+{{ include('sample/_form.html.twig') }}
+
+{% endblock %}

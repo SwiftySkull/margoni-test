@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recherche par format{% endblock %}
+
+{% block sizeActive %}active{% endblock %}
+
+{% block body %}
+
+<h1>Recherche par format</h1>
+
+<h2>Liste des formats</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Actions</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for size in sizes %}
+
+      {{ include('sample/_table.html.twig', {
+        'variable': size,
+        'var' : 'size',
+        'unique' : size.format,
+        })
+      }}
+
+    {% endfor %}
+  </tbody>
+</table>
+<form action="{{ path('size_add') }}" method="POST">
+  <input type="hidden" name="token" value="{{ csrf_token('add-edit-item') }}"/>
+  <button class="btn btn-success">Ajouter un nouveau format</button>
+</form>
+
+{% endblock %}

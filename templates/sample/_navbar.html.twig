@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ path('home') }}">Margoni Project</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+            <a class="nav-link {% block homeActive %}{% endblock %}" aria-current="page" href="{{ path('home') }}">Accueil</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link {% block frameActive %}{% endblock %}" aria-current="page" href="{{ path('searching_frame_browse') }}">Encadrements</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link {% block collectionActive %}{% endblock %}" aria-current="page" href="{{ path('searching_collection_browse') }}">Collection</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link {% block categoryActive %}{% endblock %}" aria-current="page" href="{{ path('category_browse') }}">Catégories</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link {% block techniqueActive %}{% endblock %}" aria-current="page" href="{{ path('searching_technique_browse') }}">Techniques</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link {% block sizeActive %}{% endblock %}" aria-current="page" href="{{ path('searching_size_browse') }}">Format</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link {% block heightActive %}{% endblock %}" aria-current="page" href="{{ path('searching_height_browse') }}">Taille</a>
+            </li>
+        </ul>
+        <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        </div>
+    </div>
+</nav>

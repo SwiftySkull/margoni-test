@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ method }} d'une peinture{% endblock %}
+
+{% block body %}
+
+<h1>{{ method }} d'une peinture</h1>
+
+{% if 'Création' is same as method %}
+<h4>La création du tableau peut se limiter à la photo</h4>
+{% endif %}
+
+{{ include('main/_form.html.twig') }}
+
+{% endblock %}

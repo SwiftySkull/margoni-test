@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ method }} d'une catégorie{% endblock %}
+
+{% block categoryActive %}active{% endblock %}
+
+{% block body %}
+
+<h1>{{ method }} d'une catégorie</h1>
+
+{{ include('sample/_form.html.twig') }}
+
+{% endblock %}

@@ -1,0 +1,24 @@
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item"><a class="page-link" href="{{ path('home_plus', {id:previousPage}) }}">- 5 Previous</a></li>
+    
+    {% if pages['pageMin'] < 2 %}
+    {% else %}
+    <li class="page-item"><p class="page-link" href="">...</p></li>
+    {% endif %}
+
+    
+    
+    {% for i in pages['pageMin']..pages['pageMax'] %}
+        <li class="page-item"><a class="page-link" href="{{ path('home_plus', {id:i}) }}">{{ i }}</a></li>
+    {% endfor %}
+        
+    {% if pages['pageMax'] > totalPages - 1 %}
+    {% else %}
+    <li class="page-item"><p class="page-link" href="">...</p></li>
+    {% endif %}
+
+
+    <li class="page-item"><a class="page-link" href="{{ path('home_plus', {id:nextPage}) }}">+ 5 Next</a></li>
+  </ul>
+</nav>

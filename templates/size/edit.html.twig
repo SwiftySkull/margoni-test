@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ method }} d'un format{% endblock %}
+
+{% block sizeActive %}active{% endblock %}
+
+{% block body %}
+
+<h1>{{ method }} d'un format</h1>
+
+{{ include('sample/_form.html.twig') }}
+
+{% endblock %}
